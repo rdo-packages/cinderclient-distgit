@@ -1,6 +1,6 @@
 Name:             python-cinderclient
 Version:          1.1.1
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
 Group:            Development/Languages
@@ -93,6 +93,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Mon Oct 13 2014 Jakub Ruzicka <jruzicka@redhat.com> 1.1.1-1
 - Update to upstream 1.1.1
 - New -doc BuildRequires: python-oslo-sphinx
