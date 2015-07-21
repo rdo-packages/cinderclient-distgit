@@ -1,15 +1,12 @@
 Name:             python-cinderclient
-Version:          1.1.1
-Release:          2%{?dist}
+Version:          1.2.1
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
 Group:            Development/Languages
 License:          ASL 2.0
 URL:              http://github.com/openstack/python-cinderclient
 Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
-
-Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
-Patch0002: 0002-Stop-pbr-from-installing-requirements-during-build.patch
 
 BuildArch:        noarch
 
@@ -19,6 +16,7 @@ BuildRequires:    python-pbr
 BuildRequires:    python-d2to1
 
 Requires:         python-babel
+Requires:         python-keystoneclient
 Requires:         python-prettytable
 Requires:         python-requests
 Requires:         python-setuptools
@@ -46,9 +44,6 @@ This package contains auto-generated documentation.
 
 %prep
 %setup -q
-
-%patch0001 -p1
-%patch0002 -p1
 
 # We provide version like this in order to remove runtime dep on pbr.
 sed -i s/REDHATCINDERCLIENTVERSION/%{version}/ cinderclient/__init__.py
@@ -93,6 +88,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Tue Jul 21 2015 Haikel Guemar <hguemar@fedoraproject.org> 1.2.1-1
+- Update to upstream 1.2.1
+
 * Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.1.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 
