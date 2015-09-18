@@ -1,9 +1,8 @@
 Name:             python-cinderclient
-Version:          1.2.1
+Version:          1.4.0
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
-Group:            Development/Languages
 License:          ASL 2.0
 URL:              http://github.com/openstack/python-cinderclient
 Source0:          http://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
@@ -17,6 +16,7 @@ BuildRequires:    python-d2to1
 
 Requires:         python-babel
 Requires:         python-keystoneclient
+Requires:         python-pbr
 Requires:         python-prettytable
 Requires:         python-requests
 Requires:         python-setuptools
@@ -29,7 +29,7 @@ Client library (cinderclient python module) and command line utility
 
 
 %package doc
-Summary:          Documentation for OpenStack Nova API Client
+Summary:          Documentation for OpenStack Cinder API Client
 Group:            Documentation
 
 BuildRequires:    python-sphinx
@@ -45,27 +45,22 @@ This package contains auto-generated documentation.
 %prep
 %setup -q
 
-# We provide version like this in order to remove runtime dep on pbr.
-sed -i s/REDHATCINDERCLIENTVERSION/%{version}/ cinderclient/__init__.py
-
 # Remove bundled egg-info
 rm -rf python_cinderclient.egg-info
 
 # Let RPM handle the requirements
 rm -f {,test-}requirements.txt
 
-sed -i 's/oslosphinx/oslo.sphinx/' doc/source/conf.py
-
 %build
-%{__python} setup.py build
+%{__python2} setup.py build
 
 %install
-%{__python} setup.py install -O1 --skip-build --root %{buildroot}
+%{__python2} setup.py install -O1 --skip-build --root %{buildroot}
 
 install -p -D -m 644 tools/cinder.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/cinder.bash_completion
 
 # Delete tests
-rm -fr %{buildroot}%{python_sitelib}/cinderclient/tests
+rm -fr %{buildroot}%{python2_sitelib}/cinderclient/tests
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 sphinx-build -b html doc/source html
@@ -79,8 +74,8 @@ rm -fr html/.doctrees html/.buildinfo
 %files
 %doc LICENSE README.rst
 %{_bindir}/cinder
-%{python_sitelib}/cinderclient
-%{python_sitelib}/*.egg-info
+%{python2_sitelib}/cinderclient
+%{python2_sitelib}/*.egg-info
 %{_sysconfdir}/bash_completion.d/cinder.bash_completion
 %{_mandir}/man1/cinder.1*
 
@@ -88,6 +83,9 @@ rm -fr html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Fri Sep 18 2015 Haikel Guemar <hguemar@fedoraproject.org> 1.4.0-1
+- Update to upstream 1.4.0
+
 * Tue Jul 21 2015 Haikel Guemar <hguemar@fedoraproject.org> 1.2.1-1
 - Update to upstream 1.2.1
 
