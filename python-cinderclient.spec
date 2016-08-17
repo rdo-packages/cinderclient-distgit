@@ -7,7 +7,7 @@
 
 Name:             python-cinderclient
 Version:          1.6.0
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
 License:          ASL 2.0
@@ -149,5 +149,8 @@ install -p -D -m 644 man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %doc html
 
 %changelog
+* Wed Aug 17 2016 Haïkel Guémar <hguemar@fedoraproject.org> - 1.6.0-2
+- Add python3 subpackage
+
 * Wed Mar 23 2016 RDO <rdo-list@redhat.com> 1.6.0-0.1
 -  Rebuild for Mitaka 
