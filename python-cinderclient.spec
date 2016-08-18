@@ -129,7 +129,8 @@ install -p -D -m 644 tools/cinder.bash_completion %{buildroot}%{_sysconfdir}/bas
 install -p -D -m 644 man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 
 %files -n python2-%{sname}
-%doc LICENSE README.rst
+%doc README.rst
+%license LICENSE
 %{_bindir}/cinder
 %{_bindir}/cinder-2*
 %{python2_sitelib}/cinderclient
@@ -139,7 +140,8 @@ install -p -D -m 644 man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 
 %if 0%{?with_python3}
 %files -n python3-%{sname}
-%doc LICENSE README.rst
+%doc README.rst
+%license LICENSE
 %{_bindir}/cinder-3*
 %{python3_sitelib}/cinderclient
 %{python3_sitelib}/*.egg-info
