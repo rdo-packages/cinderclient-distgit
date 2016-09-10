@@ -6,8 +6,8 @@
 %endif
 
 Name:             python-cinderclient
-Version:          XXX
-Release:          XXX
+Version:          1.9.0
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
 License:          ASL 2.0
@@ -151,3 +151,6 @@ install -p -D -m 644 man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %doc html
 
 %changelog
+* Sat Sep 10 2016 Haikel Guemar <hguemar@fedoraproject.org> 1.9.0-1
+- Update to 1.9.0
+
