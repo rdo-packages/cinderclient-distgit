@@ -39,9 +39,9 @@ Requires:         python-requests
 Requires:         python-setuptools
 Requires:         python-simplejson
 Requires:         python-six
-Requires:         python-keystoneauth1 >= 2.12.0
+Requires:         python-keystoneauth1 >= 2.18.0
 Requires:         python-oslo-i18n >= 3.9.0
-Requires:         python-oslo-utils >= 3.16.0
+Requires:         python-oslo-utils >= 3.18.0
 
 %description -n python2-%{sname}
 Client library (cinderclient python module) and command line utility
@@ -66,9 +66,9 @@ Requires:         python3-requests
 Requires:         python3-setuptools
 Requires:         python3-simplejson
 Requires:         python3-six
-Requires:         python3-keystoneauth1 >= 2.12.0
+Requires:         python3-keystoneauth1 >= 2.18.0
 Requires:         python3-oslo-i18n >= 3.9.0
-Requires:         python3-oslo-utils >= 3.16.0
+Requires:         python3-oslo-utils >= 3.18.0
 
 %description -n python3-%{sname}
 Client library (cinderclient python module) and command line utility
