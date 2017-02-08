@@ -12,7 +12,7 @@ Summary:          Python API and CLI for OpenStack Cinder
 
 License:          ASL 2.0
 URL:              http://github.com/openstack/python-cinderclient
-Source0:          https://pypi.io/packages/source/p/%{name}/%{name}-%{version}.tar.gz
+Source0:          https://tarballs.openstack.org/%{name}/%{name}-%{upstream_version}.tar.gz
 
 BuildArch:        noarch
 
