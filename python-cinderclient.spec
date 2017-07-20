@@ -82,7 +82,7 @@ Group:            Documentation
 
 BuildRequires:    python-reno
 BuildRequires:    python-sphinx
-BuildRequires:    python-oslo-sphinx
+BuildRequires:    python-openstackdocstheme
 
 %description      doc
 Client library (cinderclient python module) and command line utility
@@ -106,12 +106,11 @@ rm -f {,test-}requirements.txt
 %py3_build
 %endif
 
-export PYTHONPATH="$( pwd ):$PYTHONPATH"
-sphinx-build -b html doc/source html
-sphinx-build -b man doc/source man
+%{__python2} setup.py build_sphinx -b html
+%{__python2} setup.py build_sphinx -b man
 
 # Fix hidden-file-or-dir warnings
-rm -fr html/.doctrees html/.buildinfo
+rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
 
 %install
 %if 0%{?with_python3}
@@ -132,7 +131,7 @@ ln -s ./cinder-2 %{buildroot}%{_bindir}/cinder
 
 install -p -D -m 644 tools/cinder.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/cinder.bash_completion
 
-install -p -D -m 644 man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
+install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 
 %files -n python2-%{sname}
 %doc README.rst
@@ -154,6 +153,6 @@ install -p -D -m 644 man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %endif
 
 %files doc
-%doc html
+%doc doc/build/html
 
 %changelog
