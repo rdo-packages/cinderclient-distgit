@@ -106,6 +106,10 @@ rm -f {,test-}requirements.txt
 %py3_build
 %endif
 
+# FIXME (amoralej): following manual edit on conf.py is required for man page
+# until https://review.openstack.org/#/c/489123 is merged
+sed -i 's/man\/cinder/user\/cinder/' doc/source/conf.py
+
 %{__python2} setup.py build_sphinx -b html
 %{__python2} setup.py build_sphinx -b man
 
