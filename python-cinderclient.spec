@@ -32,7 +32,6 @@ BuildRequires:    python-pbr
 BuildRequires:    python-d2to1
 
 Requires:         python-babel
-Requires:         python-keystoneclient
 Requires:         python-pbr
 Requires:         python-prettytable
 Requires:         python-requests
@@ -59,7 +58,6 @@ BuildRequires:    python3-pbr
 BuildRequires:    python3-d2to1
 
 Requires:         python3-babel
-Requires:         python3-keystoneclient
 Requires:         python3-pbr
 Requires:         python3-prettytable
 Requires:         python3-requests
