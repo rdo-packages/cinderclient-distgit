@@ -58,6 +58,7 @@ BuildRequires:    python3-devel
 BuildRequires:    python3-setuptools
 BuildRequires:    python3-pbr
 BuildRequires:    python3-d2to1
+BuildRequires:    openstack-macros
 
 Requires:         python3-babel
 Requires:         python3-pbr
@@ -96,7 +97,7 @@ This package contains auto-generated documentation.
 rm -rf python_cinderclient.egg-info
 
 # Let RPM handle the requirements
-rm -f {,test-}requirements.txt
+%py_req_cleanup
 
 %build
 %py2_build
