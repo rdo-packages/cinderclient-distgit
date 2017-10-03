@@ -5,6 +5,10 @@
 %global with_python3 1
 %endif
 
+%global common_desc \
+Client library (cinderclient python module) and command line utility \
+(cinder) for interacting with OpenStack Cinder (Block Storage) API.
+
 Name:             python-cinderclient
 Version:          XXX
 Release:          XXX
@@ -19,8 +23,7 @@ BuildArch:        noarch
 BuildRequires:    git
 
 %description
-Client library (cinderclient python module) and command line utility
-(cinder) for interacting with OpenStack Cinder (Block Storage) API.
+%{common_desc}
 
 %package -n python2-%{sname}
 Summary:          Python API and CLI for OpenStack Cinder
@@ -43,8 +46,7 @@ Requires:         python-oslo-i18n >= 3.9.0
 Requires:         python-oslo-utils >= 3.20.0
 
 %description -n python2-%{sname}
-Client library (cinderclient python module) and command line utility
-(cinder) for interacting with OpenStack Cinder (Block Storage) API.
+%{common_desc}
 
 
 %if 0%{?with_python3}
@@ -69,8 +71,7 @@ Requires:         python3-oslo-i18n >= 3.9.0
 Requires:         python3-oslo-utils >= 3.20.0
 
 %description -n python3-%{sname}
-Client library (cinderclient python module) and command line utility
-(cinder) for interacting with OpenStack Cinder (Block Storage) API.
+%{common_desc}
 %endif
 
 
@@ -83,8 +84,7 @@ BuildRequires:    python-sphinx
 BuildRequires:    python-openstackdocstheme
 
 %description      doc
-Client library (cinderclient python module) and command line utility
-(cinder) for interacting with OpenStack Cinder (Block Storage) API.
+%{common_desc}
 
 This package contains auto-generated documentation.
 
