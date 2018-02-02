@@ -30,20 +30,27 @@ Summary:          Python API and CLI for OpenStack Cinder
 %{?python_provide:%python_provide python2-%{sname}}
 
 BuildRequires:    python2-devel
-BuildRequires:    python-setuptools
-BuildRequires:    python-pbr
+BuildRequires:    python2-setuptools
+BuildRequires:    python2-pbr
+%if 0%{?fedora} > 0
+BuildRequires:    python2-d2to1
+%else
 BuildRequires:    python-d2to1
+%endif
 
-Requires:         python-babel
-Requires:         python-pbr
-Requires:         python-prettytable
-Requires:         python-requests
-Requires:         python-setuptools
+Requires:         python2-babel
+Requires:         python2-pbr
+Requires:         python2-prettytable
+Requires:         python2-requests
+Requires:         python2-six
+Requires:         python2-keystoneauth1 >= 3.3.0
+Requires:         python2-oslo-i18n >= 3.15.3
+Requires:         python2-oslo-utils >= 3.33.0
+%if 0%{?fedora} > 0
+Requires:         python2-simplejson
+%else
 Requires:         python-simplejson
-Requires:         python-six
-Requires:         python-keystoneauth1 >= 2.21.0
-Requires:         python-oslo-i18n >= 3.9.0
-Requires:         python-oslo-utils >= 3.20.0
+%endif
 
 %description -n python2-%{sname}
 %{common_desc}
@@ -66,9 +73,9 @@ Requires:         python3-requests
 Requires:         python3-setuptools
 Requires:         python3-simplejson
 Requires:         python3-six
-Requires:         python3-keystoneauth1 >= 2.21.0
-Requires:         python3-oslo-i18n >= 3.9.0
-Requires:         python3-oslo-utils >= 3.20.0
+Requires:         python3-keystoneauth1 >= 3.3.0
+Requires:         python3-oslo-i18n >= 3.15.3
+Requires:         python3-oslo-utils >= 3.33.0
 
 %description -n python3-%{sname}
 %{common_desc}
