@@ -165,3 +165,4 @@ install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %doc doc/build/html
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/python-cinderclient/commit/?id=a45faf0f47111023c78f70843fe3e9ac912add43
