@@ -43,7 +43,7 @@ Requires:         python2-pbr
 Requires:         python2-prettytable
 Requires:         python2-requests
 Requires:         python2-six
-Requires:         python2-keystoneauth1 >= 3.3.0
+Requires:         python2-keystoneauth1 >= 3.4.0
 Requires:         python2-oslo-i18n >= 3.15.3
 Requires:         python2-oslo-utils >= 3.33.0
 %if 0%{?fedora} > 0
@@ -73,7 +73,7 @@ Requires:         python3-requests
 Requires:         python3-setuptools
 Requires:         python3-simplejson
 Requires:         python3-six
-Requires:         python3-keystoneauth1 >= 3.3.0
+Requires:         python3-keystoneauth1 >= 3.4.0
 Requires:         python3-oslo-i18n >= 3.15.3
 Requires:         python3-oslo-utils >= 3.33.0
 
