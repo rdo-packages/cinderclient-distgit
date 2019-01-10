@@ -13,6 +13,8 @@
 
 %global sname cinderclient
 
+%global with_doc 1
+
 %global common_desc \
 Client library (cinderclient python module) and command line utility \
 (cinder) for interacting with OpenStack Cinder (Block Storage) API.
@@ -59,6 +61,7 @@ Requires:         python%{pyver}-simplejson
 %description -n python%{pyver}-%{sname}
 %{common_desc}
 
+%if 0%{?with_doc}
 %package doc
 Summary:          Documentation for OpenStack Cinder API Client
 Group:            Documentation
@@ -71,7 +74,7 @@ BuildRequires:    python%{pyver}-openstackdocstheme
 %{common_desc}
 
 This package contains auto-generated documentation.
-
+%endif
 
 %prep
 %autosetup -n %{name}-%{upstream_version} -S git
@@ -85,11 +88,13 @@ rm -f {,test-}requirements.txt
 %build
 %{pyver_build}
 
+%if 0%{?with_doc}
 sphinx-build-%{pyver} -W -b html doc/source doc/build/html
 sphinx-build-%{pyver} -W -b man doc/source doc/build/man
 
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
+%endif
 
 %install
 %{pyver_install}
@@ -101,7 +106,9 @@ rm -fr %{buildroot}%{pyver_sitelib}/cinderclient/tests
 
 install -p -D -m 644 tools/cinder.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/cinder.bash_completion
 
+%if 0%{?with_doc}
 install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
+%endif
 
 %files -n python%{pyver}-%{sname}
 %doc README.rst
@@ -111,9 +118,13 @@ install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %{pyver_sitelib}/cinderclient
 %{pyver_sitelib}/*.egg-info
 %{_sysconfdir}/bash_completion.d/cinder.bash_completion
+%if 0%{?with_doc}
 %{_mandir}/man1/cinder.1*
+%endif
 
+%if 0%{?with_doc}
 %files doc
 %doc doc/build/html
+%endif
 
 %changelog
