@@ -6,7 +6,7 @@
 %endif
 
 Name:             python-cinderclient
-Version:          3.1.0
+Version:          3.1.1
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
@@ -158,6 +158,9 @@ install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %doc doc/build/html
 
 %changelog
+* Mon Feb 18 2019 RDO <dev@lists.rdoproject.org> 3.1.1-1
+- Update to 3.1.1
+
 * Fri Aug 11 2017 Alfredo Moralejo <amoralej@redhat.com> 3.1.0-1
 - Update to 3.1.0
 
