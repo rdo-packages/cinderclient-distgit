@@ -42,12 +42,7 @@ Summary:          Python API and CLI for OpenStack Cinder
 BuildRequires:    python%{pyver}-devel
 BuildRequires:    python%{pyver}-setuptools
 BuildRequires:    python%{pyver}-pbr
-# Handle python2 exception
-%if %{pyver} == 2
-BuildRequires:    python-d2to1
-%else
-BuildRequires:    python%{pyver}-d2to1
-%endif
+
 Requires:         python%{pyver}-babel
 Requires:         python%{pyver}-pbr
 Requires:         python%{pyver}-prettytable
