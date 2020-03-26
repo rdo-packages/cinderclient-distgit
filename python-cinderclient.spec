@@ -20,7 +20,7 @@ Client library (cinderclient python module) and command line utility \
 (cinder) for interacting with OpenStack Cinder (Block Storage) API.
 
 Name:             python-cinderclient
-Version:          4.2.1
+Version:          4.2.2
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
@@ -128,6 +128,9 @@ install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %endif
 
 %changelog
+* Thu Mar 26 2020 RDO <dev@lists.rdoproject.org> 4.2.2-1
+- Update to 4.2.2
+
 * Fri Jul 12 2019 RDO <dev@lists.rdoproject.org> 4.2.1-1
 - Update to 4.2.1
 
