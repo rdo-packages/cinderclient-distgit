@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global sname cinderclient
@@ -35,25 +24,25 @@ BuildRequires:    git
 %description
 %{common_desc}
 
-%package -n python%{pyver}-%{sname}
+%package -n python3-%{sname}
 Summary:          Python API and CLI for OpenStack Cinder
-%{?python_provide:%python_provide python%{pyver}-%{sname}}
+%{?python_provide:%python_provide python3-%{sname}}
 
-BuildRequires:    python%{pyver}-devel
-BuildRequires:    python%{pyver}-setuptools
-BuildRequires:    python%{pyver}-pbr
+BuildRequires:    python3-devel
+BuildRequires:    python3-setuptools
+BuildRequires:    python3-pbr
 
-Requires:         python%{pyver}-babel
-Requires:         python%{pyver}-pbr
-Requires:         python%{pyver}-prettytable
-Requires:         python%{pyver}-requests
-Requires:         python%{pyver}-six
-Requires:         python%{pyver}-keystoneauth1 >= 3.4.0
-Requires:         python%{pyver}-oslo-i18n >= 3.15.3
-Requires:         python%{pyver}-oslo-utils >= 3.33.0
-Requires:         python%{pyver}-simplejson
+Requires:         python3-babel
+Requires:         python3-pbr
+Requires:         python3-prettytable
+Requires:         python3-requests
+Requires:         python3-six
+Requires:         python3-keystoneauth1 >= 3.4.0
+Requires:         python3-oslo-i18n >= 3.15.3
+Requires:         python3-oslo-utils >= 3.33.0
+Requires:         python3-simplejson
 
-%description -n python%{pyver}-%{sname}
+%description -n python3-%{sname}
 %{common_desc}
 
 %if 0%{?with_doc}
@@ -61,9 +50,9 @@ Requires:         python%{pyver}-simplejson
 Summary:          Documentation for OpenStack Cinder API Client
 Group:            Documentation
 
-BuildRequires:    python%{pyver}-reno
-BuildRequires:    python%{pyver}-sphinx
-BuildRequires:    python%{pyver}-openstackdocstheme
+BuildRequires:    python3-reno
+BuildRequires:    python3-sphinx
+BuildRequires:    python3-openstackdocstheme
 
 %description      doc
 %{common_desc}
@@ -81,23 +70,23 @@ rm -rf python_cinderclient.egg-info
 rm -f {,test-}requirements.txt
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %if 0%{?with_doc}
-sphinx-build-%{pyver} -W -b html doc/source doc/build/html
-sphinx-build-%{pyver} -W -b man doc/source doc/build/man
+sphinx-build-3 -W -b html doc/source doc/build/html
+sphinx-build-3 -W -b man doc/source doc/build/man
 
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
 
 %install
-%{pyver_install}
+%{py3_install}
 # Create a versioned binary for backwards compatibility until everything is pure py3
-ln -s cinder %{buildroot}%{_bindir}/cinder-%{pyver}
+ln -s cinder %{buildroot}%{_bindir}/cinder-3
 
 # Delete tests
-rm -fr %{buildroot}%{pyver_sitelib}/cinderclient/tests
+rm -fr %{buildroot}%{python3_sitelib}/cinderclient/tests
 
 install -p -D -m 644 tools/cinder.bash_completion %{buildroot}%{_sysconfdir}/bash_completion.d/cinder.bash_completion
 
@@ -105,13 +94,13 @@ install -p -D -m 644 tools/cinder.bash_completion %{buildroot}%{_sysconfdir}/bas
 install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %endif
 
-%files -n python%{pyver}-%{sname}
+%files -n python3-%{sname}
 %doc README.rst
 %license LICENSE
 %{_bindir}/cinder
-%{_bindir}/cinder-%{pyver}
-%{pyver_sitelib}/cinderclient
-%{pyver_sitelib}/*.egg-info
+%{_bindir}/cinder-3
+%{python3_sitelib}/cinderclient
+%{python3_sitelib}/*.egg-info
 %{_sysconfdir}/bash_completion.d/cinder.bash_completion
 %if 0%{?with_doc}
 %{_mandir}/man1/cinder.1*
