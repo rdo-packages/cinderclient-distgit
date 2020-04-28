@@ -32,7 +32,6 @@ BuildRequires:    python3-devel
 BuildRequires:    python3-setuptools
 BuildRequires:    python3-pbr
 
-Requires:         python3-babel
 Requires:         python3-pbr
 Requires:         python3-prettytable
 Requires:         python3-requests
