@@ -52,6 +52,9 @@ Group:            Documentation
 BuildRequires:    python3-reno
 BuildRequires:    python3-sphinx
 BuildRequires:    python3-openstackdocstheme
+BuildRequires:    python3-keystoneauth1
+BuildRequires:    python3-oslo-utils
+BuildRequires:    python3-prettytable
 
 %description      doc
 %{common_desc}
@@ -72,6 +75,7 @@ rm -f {,test-}requirements.txt
 %{py3_build}
 
 %if 0%{?with_doc}
+export PYTHONPATH=.
 sphinx-build-3 -W -b html doc/source doc/build/html
 sphinx-build-3 -W -b man doc/source doc/build/man
 
