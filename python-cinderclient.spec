@@ -72,6 +72,7 @@ rm -f {,test-}requirements.txt
 %{py3_build}
 
 %if 0%{?with_doc}
+export PYTHONPATH=.
 sphinx-build-3 -W -b html doc/source doc/build/html
 sphinx-build-3 -W -b man doc/source doc/build/man
 
