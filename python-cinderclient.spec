@@ -32,7 +32,7 @@ BuildRequires:  /usr/bin/gpgv2
 BuildRequires:  openstack-macros
 %endif
 
-BuildRequires:    git
+BuildRequires:    git-core
 
 %description
 %{common_desc}
