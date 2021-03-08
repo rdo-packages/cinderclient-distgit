@@ -45,15 +45,15 @@ BuildRequires:    python3-devel
 BuildRequires:    python3-setuptools
 BuildRequires:    python3-pbr
 
-Requires:         python3-pbr
-Requires:         python3-prettytable
+Requires:         python3-pbr >= 5.5.0
+Requires:         python3-prettytable >= 0.7.2
 Requires:         python3-requests
-Requires:         python3-six
-Requires:         python3-keystoneauth1 >= 3.4.0
-Requires:         python3-oslo-i18n >= 3.15.3
-Requires:         python3-oslo-utils >= 3.33.0
-Requires:         python3-simplejson
-Requires:         python3-stevedore >= 1.20.0
+Requires:         python3-six >= 1.15.0
+Requires:         python3-keystoneauth1 >= 4.2.1
+Requires:         python3-oslo-i18n >= 5.0.1
+Requires:         python3-oslo-utils >= 4.7.0
+Requires:         python3-simplejson >= 3.5.1
+Requires:         python3-stevedore >= 3.2.2
 
 %description -n python3-%{sname}
 %{common_desc}
