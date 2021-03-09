@@ -1,5 +1,5 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
-%global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
+%global sources_gpg_sign 0x5d2d1e4fb8d38e6af76c50d53d4fec30cf5ce3da
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global sname cinderclient
@@ -11,8 +11,8 @@ Client library (cinderclient python module) and command line utility \
 (cinder) for interacting with OpenStack Cinder (Block Storage) API.
 
 Name:             python-cinderclient
-Version:          7.2.0
-Release:          2%{?dist}
+Version:          7.2.1
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Cinder
 
 License:          ASL 2.0
@@ -133,6 +133,9 @@ install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %endif
 
 %changelog
+* Tue Mar 09 2021 RDO <dev@lists.rdoproject.org> 7.2.1-1
+- Update to 7.2.1
+
 * Wed Oct 21 2020 Joel Capitao <jcapitao@redhat.com> 7.2.0-2
 - Enable sources tarball validation using GPG signature.
 
