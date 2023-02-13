@@ -51,7 +51,6 @@ Requires:         python3-requests
 Requires:         python3-keystoneauth1 >= 4.3.1
 Requires:         python3-oslo-i18n >= 5.0.1
 Requires:         python3-oslo-utils >= 4.8.0
-Requires:         python3-simplejson >= 3.5.1
 Requires:         python3-stevedore >= 3.3.0
 
 %description -n python3-%{sname}
