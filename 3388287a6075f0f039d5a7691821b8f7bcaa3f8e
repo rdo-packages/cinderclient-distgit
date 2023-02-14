@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7265a33a_36cb8d78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 141
+      },
+      "writtenOn": "2023-02-14T10:18:38Z",
+      "side": 1,
+      "message": "Master-only change, from antelope onwards (unless it\u0027s going to be backported in cinderclient)",
+      "revId": "3388287a6075f0f039d5a7691821b8f7bcaa3f8e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
