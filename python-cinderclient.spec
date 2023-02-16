@@ -48,7 +48,7 @@ BuildRequires:    python3-pbr
 Requires:         python3-pbr >= 5.5.0
 Requires:         python3-prettytable >= 0.7.2
 Requires:         python3-requests
-Requires:         python3-keystoneauth1 >= 4.3.1
+Requires:         python3-keystoneauth1 >= 5.0.0
 Requires:         python3-oslo-i18n >= 5.0.1
 Requires:         python3-oslo-utils >= 4.8.0
 Requires:         python3-stevedore >= 3.3.0
