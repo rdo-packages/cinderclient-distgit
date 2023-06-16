@@ -1,6 +1,8 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order
 
 %global sname cinderclient
 
@@ -15,7 +17,7 @@ Version:          XXX
 Release:          XXX
 Summary:          Python API and CLI for OpenStack Cinder
 
-License:          ASL 2.0
+License:          Apache-2.0
 URL:              http://github.com/openstack/python-cinderclient
 Source0:          https://tarballs.openstack.org/%{name}/%{name}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -39,20 +41,9 @@ BuildRequires:    git-core
 
 %package -n python3-%{sname}
 Summary:          Python API and CLI for OpenStack Cinder
-%{?python_provide:%python_provide python3-%{sname}}
 
 BuildRequires:    python3-devel
-BuildRequires:    python3-setuptools
-BuildRequires:    python3-pbr
-
-Requires:         python3-pbr >= 5.5.0
-Requires:         python3-prettytable >= 0.7.2
-Requires:         python3-requests
-Requires:         python3-keystoneauth1 >= 5.0.0
-Requires:         python3-oslo-i18n >= 5.0.1
-Requires:         python3-oslo-utils >= 4.8.0
-Requires:         python3-stevedore >= 3.3.0
-
+BuildRequires:    pyproject-rpm-macros
 %description -n python3-%{sname}
 %{common_desc}
 
@@ -60,13 +51,6 @@ Requires:         python3-stevedore >= 3.3.0
 %package doc
 Summary:          Documentation for OpenStack Cinder API Client
 Group:            Documentation
-
-BuildRequires:    python3-reno
-BuildRequires:    python3-sphinx
-BuildRequires:    python3-openstackdocstheme
-BuildRequires:    python3-keystoneauth1
-BuildRequires:    python3-oslo-utils
-BuildRequires:    python3-prettytable
 
 %description      doc
 %{common_desc}
@@ -84,23 +68,42 @@ This package contains auto-generated documentation.
 # Remove bundled egg-info
 rm -rf python_cinderclient.egg-info
 
-# Let RPM handle the requirements
-rm -f {,test-}requirements.txt
+
+sed -i /.*-c{env:TOX_CONSTRAINTS_FILE.*/d tox.ini
+
+# TESTING
+
+sed -i '/^minversion.*/d' tox.ini
+sed -i '/^requires.*virtualenv.*/d' tox.ini
+
+# Exclude some bad-knwon BRs
+for pkg in %{excluded_brs};do
+sed -i /^${pkg}.*/d doc/requirements.txt
+sed -i /^${pkg}.*/d test-requirements.txt
+done
+# Automatic BR generation
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
 export PYTHONPATH=.
-sphinx-build-3 -W -b html doc/source doc/build/html
+%tox -e docs
 sphinx-build-3 -W -b man doc/source doc/build/man
+
 
 # Fix hidden-file-or-dir warnings
 rm -fr doc/build/html/.doctrees doc/build/html/.buildinfo
 %endif
 
 %install
-%{py3_install}
+%pyproject_install
 # Create a versioned binary for backwards compatibility until everything is pure py3
 ln -s cinder %{buildroot}%{_bindir}/cinder-3
 
@@ -119,7 +122,7 @@ install -p -D -m 644 doc/build/man/cinder.1 %{buildroot}%{_mandir}/man1/cinder.1
 %{_bindir}/cinder
 %{_bindir}/cinder-3
 %{python3_sitelib}/cinderclient
-%{python3_sitelib}/*.egg-info
+%{python3_sitelib}/*.dist-info
 %{_sysconfdir}/bash_completion.d/cinder.bash_completion
 %if 0%{?with_doc}
 %{_mandir}/man1/cinder.1*
