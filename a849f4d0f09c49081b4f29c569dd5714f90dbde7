@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dce8d79_a398287a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2025-03-17T11:33:30Z",
+      "side": 1,
+      "message": "No matching package to install: \u0027python3dist(keystoneauth1) \u003e\u003d 5.9\u0027",
+      "revId": "a849f4d0f09c49081b4f29c569dd5714f90dbde7",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
